@@ -94,8 +94,8 @@ func (e Error) Error() string {
 }
 
 // LogErrorEnabled check LogError is enabled
-func (l *logger) LogErrorEnabled() {
-	zapLogger.Core().Enabled(zapcore.ErrorLevel)
+func (l *logger) LogErrorEnabled() bool {
+	return zapLogger.Core().Enabled(zapcore.ErrorLevel)
 }
 
 // LogError logs the error in the proper format
@@ -117,8 +117,8 @@ func (l *logger) LogError(requestID, message string, err error, fields map[strin
 }
 
 // LogWarnEnabled check LogWarn is enabled
-func (l *logger) LogWarnEnabled() {
-	zapLogger.Core().Enabled(zapcore.WarnLevel)
+func (l *logger) LogWarnEnabled() bool {
+	return zapLogger.Core().Enabled(zapcore.WarnLevel)
 }
 
 // LogWarn logs the warning message in the proper format
@@ -131,8 +131,8 @@ func (l *logger) LogWarn(requestID, message string, fields map[string]interface{
 }
 
 // LogInfoEnabled check LogInfo is enabled
-func (l *logger) LogInfoEnabled() {
-	zapLogger.Core().Enabled(zapcore.InfoLevel)
+func (l *logger) LogInfoEnabled() bool {
+	return zapLogger.Core().Enabled(zapcore.InfoLevel)
 }
 
 // LogInfo logs the info message in the proper format
@@ -145,8 +145,8 @@ func (l *logger) LogInfo(requestID, message string, fields map[string]interface{
 }
 
 // LogDebugEnabled check LogDebug is enabled
-func (l *logger) LogDebugEnabled() {
-	zapLogger.Core().Enabled(zapcore.DebugLevel)
+func (l *logger) LogDebugEnabled() bool {
+	return zapLogger.Core().Enabled(zapcore.DebugLevel)
 }
 
 // LogDebug logs the debug message in proper format
@@ -159,8 +159,8 @@ func (l *logger) LogDebug(requestID, message string, fields map[string]interface
 }
 
 // LogFatalEnabled check LogFatal is enabled
-func (l *logger) LogFatalEnabled() {
-	zapLogger.Core().Enabled(zapcore.FatalLevel)
+func (l *logger) LogFatalEnabled() bool {
+	return zapLogger.Core().Enabled(zapcore.FatalLevel)
 }
 
 // LogFatal logs the fatal message in proper format
