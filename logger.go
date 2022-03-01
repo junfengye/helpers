@@ -27,7 +27,7 @@ func init() {
 	_ = InitLogger(LogLevelInfo, LogFormatJSON, false)
 }
 
-func InitLogger(loglevel, logFormat string, isDev bool) error {
+func InitLogger(loglevel, logFormat string, isDev bool, configCb ...func(*zap.Config)) error {
 	var config zap.Config
 	if isDev {
 		config = zap.NewDevelopmentConfig()
@@ -39,6 +39,9 @@ func InitLogger(loglevel, logFormat string, isDev bool) error {
 	}
 	config.Encoding = getLogFormat(logFormat)
 	config.Level.SetLevel(getLogLevel(loglevel))
+	if len(configCb) > 0 {
+		configCb[0](&config)
+	}
 	var err error
 	zapLogger, err = config.Build(zap.AddCallerSkip(1))
 	if err != nil {
